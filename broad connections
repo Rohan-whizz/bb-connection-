@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BROAD CONNECTIONS OPERATIONS CENTER</title>
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #060913;
+            color: #f1f5f9;
+            margin: 0;
+            padding: 20px;
+            letter-spacing: -0.2px;
+        }
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+        
+        /* Modern Premium Logo Layout Styling */
+        .brand-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0 45px 0;
+        }
+        .logo-container {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+        }
+        .brand-logo-svg {
+            width: 58px;
+            height: 58px;
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.6));
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.4)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.7)); transform: scale(1.03); }
+        }
+        .brand-title {
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 40%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .brand-subtitle {
+            font-size: 0.78rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: 700;
+            margin-top: -4px;
+        }
+
+        .section {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            background: #090d16;
+            border: 1px solid #1e293b;
+            color: #f8fafc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+        .btn {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        /* Stats Grid Architecture Extension */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .stats-grid-extended {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .stat-card {
+            background: rgba(7, 10, 18, 0.5);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative;
+        }
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: transparent;
+        }
+        .card-blue::before { background: #3b82f6; }
+        .card-indigo::before { background: #6366f1; }
+        
+        /* Premium Trading Terminal Shares GUI Overhaul */
+        .shares-terminal {
+            background: linear-gradient(145deg, #0b1324 0%, #070b14 100%);
+            border: 1px solid #1e293b;
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+        .pulse-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #10b981;
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+        }
+        .terminal-body {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+        .ticker-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .ticker-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #10b981;
+            font-family: monospace;
+            margin-top: 4px;
+        }
+        .formula-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-family: monospace;
+            margin-top: 8px;
+        }
+        .terminal-metrics-panel {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            padding: 6px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.04);
+        }
+        .metric-row:last-child { border-bottom: none; }
+        .metric-row span:first-child { color: #94a3b8; }
+        .metric-row span:last-child { color: #f1f5f9; font-weight: 600; }
+
+        /* Remote Work Panels */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .task-box {
+            background: rgba(7, 10, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .info-tag {
+            font-size: 0.78rem;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .bank-highlight { background: rgba(30, 41, 59, 0.5); padding: 16px; border-radius: 10px; margin-bottom: 18px; border-left: 4px solid #f59e0b; }
+        .maintenance-banner { background: rgba(127, 29, 29, 0.4); border: 1px solid #f87171; padding: 16px; border-radius: 10px; margin-bottom: 20px; color: #fca5a5; font-size: 0.9rem; }
+        
+        /* Workflow State Visibility Enforcements */
+        #activation { display: none; opacity: 0; transform: translateY(15px); }
+        .lockout-state { opacity: 0.3; pointer-events: none; user-select: none; }
+        .lockout-notice { color: #ef4444; font-size: 0.85rem; font-weight: 600; margin-top: 5px; }
+
+        /* Terms and Conditions Modal Box Overlays */
+        .terms-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 4, 8, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .terms-modal {
+            background: #0b1324;
+            border: 1px solid #1e293b;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+        .terms-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .terms-body {
+            padding: 20px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        .terms-body h4 {
+            color: #38bdf8;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+        .terms-footer {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: right;
+        }
+        .terms-link {
+            color: #38bdf8;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* PREMIUM IMPROVED SHARES ALLOCATION HUB TACTICAL GRID */
+        .tier-selection-matrix {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin: 18px 0;
+        }
+        .tier-selector-card {
+            background: linear-gradient(145deg, #090f1d 0%, #050810 100%);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .tier-selector-card:hover {
+            transform: translateY(-2px);
+            border-color: #38bdf8;
+            box-shadow: 0 6px 20px rgba(56,189,248,0.08);
+        }
+        .tier-selector-card.selected-active {
+            border-color: #10b981;
+            background: linear-gradient(145deg, #0b1c24 0%, #040d12 100%);
+            box-shadow: 0 0 15px rgba(16,185,129,0.15);
+        }
+        .tier-selector-card.selected-active::after {
+            content: '✓';
+            position: absolute;
+            top: 6px; right: 8px;
+            color: #10b981;
+            font-weight: 900;
+            font-size: 0.85rem;
+        }
+        .tier-name {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .tier-cost {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #f1f5f9;
+            font-family: monospace;
+            margin: 6px 0;
+        }
+        .tier-scaling {
+            font-size: 0.75rem;
+            color: #10b981;
+            background: rgba(16,185,129,0.08);
+            padding: 3px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 600;
+        }
+        .hub-calculator-panel {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px dashed rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+        }
+        .calc-metric span {
+            color: #94a3b8;
+        }
+        .calc-metric strong {
+            color: #f1f5f9;
+            font-family: monospace;
+            margin-left: 4px;
+        }
+
+        /* ADMIN EARTHING HUB LAYOUT STYLES WITH SECURE AUTHS */
+        .admin-earthing-panel {
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: rgba(15, 10, 10, 0.8);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.05);
+        }
+        .earthing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .earthing-monitor-box {
+            background: #000;
+            border: 1px solid #2d1a1a;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 0.82rem;
+        }
+        .earthing-monitor-box span {
+            color: #f87171;
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        .earthing-monitor-box div {
+            color: #f1f5f9;
+            word-break: break-all;
+        }
+        #earthingSecureAuthWrapper {
+            padding: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 950px) {
+            .tier-selection-matrix { grid-template-columns: repeat(3, 1fr); }
+            .earthing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 650px) {
+            .tier-selection-matrix { grid-template-columns: 1fr; }
+            .hub-calculator-panel { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .earthing-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 868px) { 
+            .stats-grid { grid-template-columns: 1fr; } 
+            .stats-grid-extended { grid-template-columns: 1fr; }
+            .terminal-body { grid-template-columns: 1fr; gap: 16px; }
+            .workspace-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="brand-header">
+        <div class="logo-container">
+            <svg class="brand-logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#38bdf8" />
+                        <stop offset="50%" stop-color="#0284c7" />
+                        <stop offset="100%" stop-color="#0369a1" />
+                    </linearGradient>
+                </defs>
+                <circle cx="32" cy="18" r="4" fill="url(#logoGlow)" />
+                <circle cx="16" cy="42" r="4" fill="url(#logoGlow)" />
+                <circle cx="48" cy="42" r="4" fill="url(#logoGlow)" />
+                <path d="M32 18 L16 42 M16 42 L48 42 M48 42 L32 18" stroke="url(#logoGlow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.4"/>
+                <path d="M32 10 L10 38 L32 56 L54 38 Z" stroke="url(#logoGlow)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <circle cx="32" cy="34" r="5" fill="#f1f5f9" />
+            </svg>
+        </div>
+        <div class="brand-title">Broad Connections</div>
+        <div class="brand-subtitle">Asset Operations Portal</div>
+    </div>
+
+    <div id="registration" class="section">
+        <h2>User Onboarding Node</h2>
+        <div class="form-group"><label>Full Name</label><input type="text" id="fullname" class="form-input" placeholder="e.g. John Doe"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="email" class="form-input" placeholder="name@domain.com"></div>
+        <div class="form-group"><label>Phone Number</label><input type="text" id="phone" class="form-input" placeholder="e.g. 0712345678"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="password" class="form-input" placeholder="Minimum 6 characters"></div>
+        <div class="form-group">
+            <input type="checkbox" id="terms" style="accent-color: #38bdf8;">
+            <label style="display:inline; margin-left: 5px;">I agree to the Platform <span class="terms-link" onclick="toggleTermsModal(true)">Terms & Conditions</span></label>
+        </div>
+        <button class="btn" onclick="registerUser()">Register Account</button>
+    </div>
+
+    <div id="activation" class="section">
+        <h2 style="color: #f59e0b;">Account Activation Payment Portal</h2>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-top:-10px; margin-bottom:20px;">
+            Your database architecture requires verified token activation parameters to open market slots. Complete transaction below.
+        </p>
+        <div class="maintenance-banner"><strong>⚠️ Notice:</strong> Automatic STK gateway updates in progress. Use manual portal details below.</div>
+        <div class="bank-highlight">
+            <strong>Required Fee:</strong> KSh 149.00<br>
+            <strong>Paybill Code:</strong> 542542<br>
+            <strong>Account Number:</strong> 05609477496150
+        </div>
+        <div class="form-group"><label>Your Source Account/Phone</label><input type="text" id="bankAccountNum" class="form-input" placeholder="M-PESA Phone Number"></div>
+        <div class="form-group"><label>Amount Sent (KSh)</label><input type="number" id="bankAmount" class="form-input" value="149"></div>
+        <div class="form-group"><label>Transaction Reference Code</label><input type="text" id="bankRefCode" class="form-input" placeholder="e.g. QHB47RT89X"></div>
+        <button class="btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);" onclick="submitBankDeposit()">Submit Verification Code</button>
+    </div>
+
+    <div id="dashboard" class="section">
+        <h2>Live Enterprise Metrics</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <p style="margin:0; color:#94a3b8; font-size: 0.8rem;">REFERRAL LINK CODE</p>
+                <h3 id="refCode" style="color: #64748b;">----</h3>
+            </div>
+            <div class="stat-card">
+                <p style="margin:0; color:#94a3b8; font-size: 0.8rem;">TOTAL WALLET VALUEPOOL</p>
+                <h3 id="wallet" style="color:#f59e0b; font-family: monospace; font-size:1.3rem;">KSh 0.00</h3>
+            </div>
+            <div class="stat-card">
+                <p style="margin:0; color:#94a3b8; font-size: 0.8rem;">COMPLETED REFERRALS</p>
+                <h3 id="referralCountText" style="color:#38bdf8;">0</h3>
+            </div>
+        </div>
+
+        <div class="stats-grid-extended">
+            <div class="stat-card card-blue">
+                <p style="margin:0; color:#94a3b8; font-size: 0.8rem;">PAID QUESTIONS REGISTRY</p>
+                <h3 id="countSurveys" style="font-family: monospace; margin: 4px 0 0 0;">70</h3>
+            </div>
+            <div class="stat-card card-indigo">
+                <p style="margin:0; color:#94a3b8; font-size: 0.8rem;">TODAY'S DAILY TARGETS</p>
+                <h3 id="countTodaySurveys" style="font-family: monospace; margin: 4px 0 0 0;">7</h3>
+            </div>
+        </div>
+
+        <div class="shares-terminal">
+            <div class="terminal-header">
+                <div style="font-weight: 700; font-size: 0.95rem; color: #f1f5f9;">Live Share Asset Tracker Engine</div>
+                <div class="pulse-indicator" id="terminalStatusNode">
+                    <div class="pulse-dot"></div><span>Market Inactive</span>
+                </div>
+            </div>
+            <div class="terminal-body">
+                <div>
+                    <div class="ticker-label">Total Realized Yield Value</div>
+                    <div class="ticker-value" id="guiSharesValue">KSh 0.00</div>
+                    <div class="formula-badge" id="guiFormulaText">Formula: Base + Growth Matrix</div>
+                </div>
+                <div class="terminal-metrics-panel">
+                    <div class="metric-row">
+                        <span>Selected Asset Class</span>
+                        <span id="lblActiveSlot">None Allocated</span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Base Principal Cost</span>
+                        <span id="lblBaseCost">KSh 0.00</span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Dynamic Growth Rate</span>
+                        <span id="lblGrowthRate">Select a Tier</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="task-workspace-section" class="section">
+        <h2>Remote Task Operations Desktop</h2>
+        <p style="color:#94a3b8; font-size:0.9rem; margin-top:-10px;">Process active cloud manifests and consumer inputs below to unlock daily wallet allocations.</p>
+        <div id="taskLockoutNotice" class="lockout-notice">⚠️ Workspace Locked: Complete onboarding registration and system activation first.</div>
+        
+        <div id="taskGridWrapper" class="workspace-grid lockout-state">
+            <div class="task-box">
+                <h3 style="color:#38bdf8; margin-top:0; font-size:1rem; display:flex; align-items:center; gap:6px;">
+                    <svg width="18" height="18" fill="#38bdf8" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    Question Manifest Core
+                </h3>
+                <div class="form-group">
+                    <label>Assigned Target Manifest</label>
+                    <input type="text" class="form-input" style="background:#05070f;" value="QN-MATRIX-2026A" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Data Category Input Loop</label>
+                    <select class="form-input" style="background:#05070f; color:white;">
+                        <option>Consumer Market Feedback Matrix</option>
+                        <option>Enterprise Cloud Infrastructure Analytics</option>
+                        <option>UI/UX Flow Evaluation Loop</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="executeSurveySubmission()">Submit Active Question Set</button>
+                <div class="info-tag">Earns KSh 10.00 single task daily operation clearance.</div>
+            </div>
+
+            <div class="task-box">
+                <h3 style="color:#6366f1; margin-top:0; font-size:1rem; display:flex; align-items:center; gap:6px;">
+                    <svg width="18" height="18" fill="#6366f1" viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-1.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>
+                    Daily Query Loop Node
+                </h3>
+                <div class="form-group">
+                    <label>Target Pool Parameter Vector</label>
+                    <div style="font-family: monospace; font-size: 0.82rem; color: #a5b4fc; background: #05070f; padding: 12px; border-radius: 8px; border: 1px solid #1e293b; min-height:45px;" id="lblTodaySurveyText">
+                        Press processing block below to access outstanding query entries...
+                    </div>
+                </div>
+                <button class="btn" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);" onclick="cycleTodaySurveyPool()">Process Next Daily Question</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="shares-allocation-panel" class="section">
+        <h2>Interactive Shares Allocation Hub</h2>
+        <p style="color:#94a3b8; font-size:0.9rem; margin-top:0;">
+            Select a target enterprise asset layer below to allocate investment tokens out of your liquid balance pool.
+        </p>
+        
+        <div class="tier-selection-matrix">
+            <div class="tier-selector-card selected-active" id="cardTier100" onclick="selectHubTier(100)">
+                <div class="tier-name">Base Tier</div>
+                <div class="tier-cost">KSh 100</div>
+                <div class="tier-scaling">+KSh 5/Ref</div>
+            </div>
+            <div class="tier-selector-card" id="cardTier150" onclick="selectHubTier(150)">
+                <div class="tier-name">Silver Tier</div>
+                <div class="tier-cost">KSh 150</div>
+                <div class="tier-scaling">+KSh 7/Ref</div>
+            </div>
+            <div class="tier-selector-card" id="cardTier200" onclick="selectHubTier(200)">
+                <div class="tier-name">Advanced Tier</div>
+                <div class="tier-cost">KSh 200</div>
+                <div class="tier-scaling">+KSh 10/Ref</div>
+            </div>
+            <div class="tier-selector-card" id="cardTier300" onclick="selectHubTier(300)">
+                <div class="tier-name">Premium Tier</div>
+                <div class="tier-cost">KSh 300</div>
+                <div class="tier-scaling">+KSh 15/Ref</div>
+            </div>
+            <div class="tier-selector-card" id="cardTier500" onclick="selectHubTier(500)">
+                <div class="tier-name">Enterprise Tier</div>
+                <div class="tier-cost">KSh 500</div>
+                <div class="tier-scaling">+KSh 20/Ref</div>
+            </div>
+        </div>
+
+        <div class="hub-calculator-panel">
+            <div class="calc-metric"><span>Selected Allocation Price:</span><strong id="lblSelectedCost">KSh 100.00</strong></div>
+            <div class="calc-metric"><span>Remaining Wallet Pool Estimate:</span><strong id="lblRemainingEst" style="color:#38bdf8;">KSh 0.00</strong></div>
+        </div>
+
+        <button class="btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); margin-top:16px;" onclick="processSharePurchase()">Allocate Shares Capital</button>
+    </div>
+
+    <div class="section admin-earthing-panel">
+        <h2 style="color: #ef4444; display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" fill="#ef4444" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            System Earthing Monitoring Hub
+        </h2>
+        
+        <div id="earthingSecureAuthWrapper">
+            <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 12px;">This control cluster is encrypted. Provide credentials to inspect system values.</p>
+            <div style="max-width: 320px; margin: 0 auto; display: flex; gap: 8px;">
+                <input type="password" id="txtAdminSecretPass" class="form-input" placeholder="Admin Keyphrase" style="padding: 10px;">
+                <button class="btn" style="margin: 0; width: auto; padding: 10px 20px; background: #ef4444;" onclick="unlockEarthingTerminal()">Decrypt</button>
+            </div>
+        </div>
+
+        <div id="earthingTerminalCoreDisplay" style="display: none;">
+            <p style="color: #94a3b8; font-size: 0.85rem; margin-top: -10px;">Real-time back-end registry snapshot tracking operational variables and core state arrays.</p>
+            
+            <div class="earthing-grid">
+                <div class="earthing-monitor-box">
+                    <span>Active User Profile</span>
+                    <div id="admUser">None</div>
+                </div>
+                <div class="earthing-monitor-box">
+                    <span>Liquid Balance Pool</span>
+                    <div id="admWallet">KSh 0.00</div>
+                </div>
+                <div class="earthing-monitor-box">
+                    <span>Shares Realized Yield</span>
+                    <div id="admSharesEarning">KSh 0.00</div>
+                </div>
+                <div class="earthing-monitor-box">
+                    <span>Activation Check</span>
+                    <div id="admActivation">False</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn" style="background: #1e293b; color: #f1f5f9; width: auto; font-size: 0.85rem; padding: 10px 16px; margin: 0;" onclick="addMockReferral()">+1 Inject Mock Referral</button>
+                <button class="btn" style="background: #991b1b; color: white; width: auto; font-size: 0.85rem; padding: 10px 16px; margin: 0;" onclick="resetSystemState()">Emergency DB Clear Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="termsModalWrapper" class="terms-modal-overlay">
+    <div class="terms-modal">
+        <div class="terms-header">
+            <h3 style="margin:0; color:#38bdf8;">Platform Terms & Conditions</h3>
+            <button style="background:none; border:none; color:#64748b; font-size:1.3rem; cursor:pointer;" onclick="toggleTermsModal(false)">&times;</button>
+        </div>
+        <div class="terms-body">
+            <p>Welcome to Broad Connections. By creating an account profile on our dashboard network via your mobile device or computer, you accept and agree to follow these structural operational frameworks:</p>
+            
+            <h4>1. User Registration & Onboarding Requirements</h4>
+            <p>Users must provide authentic verification identification inputs including full name, communication address, and phone number parameters. Only one registration context layout is permitted per structural operational agent.</p>
+            
+            <h4>2. Account Verification & Activation Fees</h4>
+            <p>To initiate data parsing and active shares index tracking, profiles require a one-time registration fee of exactly KSh 149.00 to our designated Paybill core architecture. This activation deposit unlocks live tracking parameters and cannot be reversed or refunded once configuration blocks have changed state.</p>
+            
+            <h4>3. Daily Task and Question Allowances</h4>
+            <p>Users are provided access to our operational question layout. A strict validation constraint permits processing exactly 7 questions daily per 24 hours, returning calculated credit metrics directly into the active wallet ledger balance.</p>
+            
+            <h4>4. Share Allocations and Referral Bounds</h4>
+            <p>Allocated tiers track network growth metrics up to a threshold limit structure. Reaching a verified configuration layer of 20 referral users triggers a flat milestone bonus reward pool computation value of KSh 500.00.</p>
+
+            <h4>5. Security & System Abuse Policies</h4>
+            <p>Any exploitation of automated submission tools, fake reference logs, or scripting injections targeting the operations hub will lead to instant account termination and database drop execution commands without notice.</p>
+        </div>
+        <div class="terms-footer">
+            <button class="btn" style="margin:0; width:auto; padding:8px 20px;" onclick="toggleTermsModal(false)">Close & Return</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const CONFIG = { fee: 149, keyphrase: "wizdev12" }; 
+let currentSelectedHubPrice = 100;
+let isEarthingTerminalUnlocked = false;
+
+const SURVEY_POOL_PROMPTS = [
+    "Question 1: Rate the performance profile tracking of decentralized liquidity networks.",
+    "Question 2: Submit optimization reviews for remote cloud data layer pipelines.",
+    "Question 3: Evaluate user flow conversion friction inside digital banking prototypes.",
+    "Question 4: Audit localized micro-transaction speeds over distributed configurations.",
+    "Question 5: Assess regional interface design variations for global enterprise consoles.",
+    "Question 6: Process validation parameters for merchant checkout workflows.",
+    "Question 7: Analyze edge security paradigms for remote platform client authentication."
+];
+
+// Helper to determine growth rate value per referral based on slot principal amount
+function getGrowthRatePerRef(slotAmount) {
+    if (slotAmount === 100) return 5;
+    if (slotAmount === 150) return 7;
+    if (slotAmount === 200) return 10;
+    if (slotAmount === 300) return 15;
+    if (slotAmount === 500) return 20;
+    return 0;
+}
+
+function toggleTermsModal(show) {
+    const modal = document.getElementById('termsModalWrapper');
+    modal.style.display = show ? 'flex' : 'none';
+}
+
+function fetchUser() {
+    let raw = localStorage.getItem('broadUser');
+    if (!raw) {
+        return { fullname: "", email: "", phone: "", referralCode: "----", is_active: false, wallet: 0.00, referrals: 0, allocatedSlot: 0, surveyRegistryQuota: 70, todaySurveyQuota: 7, dailySurveyProcessed: false, bountyTriggered: false };
+    }
+    return JSON.parse(raw);
+}
+
+function saveUser(obj) {
+    localStorage.setItem('broadUser', JSON.stringify(obj));
+    renderDisplay(obj);
+}
+
+function unlockEarthingTerminal() {
+    const inputPass = document.getElementById('txtAdminSecretPass').value;
+    if (inputPass === CONFIG.keyphrase) {
+        isEarthingTerminalUnlocked = true;
+        document.getElementById('earthingSecureAuthWrapper').style.display = 'none';
+        document.getElementById('earthingTerminalCoreDisplay').style.display = 'block';
+        renderDisplay(fetchUser());
+    } else {
+        alert("Authorization failed: Cryptographic signature mismatch.");
+    }
+}
+
+function selectHubTier(costAmount) {
+    currentSelectedHubPrice = costAmount;
+    document.querySelectorAll('.tier-selector-card').forEach(card => {
+        card.classList.remove('selected-active');
+    });
+    document.getElementById(`cardTier${costAmount}`).classList.add('selected-active');
+    
+    const user = fetchUser();
+    document.getElementById('lblSelectedCost').innerText = `KSh ${costAmount}.00`;
+    
+    let simulatedRemaining = parseFloat(user.wallet) - costAmount;
+    document.getElementById('lblRemainingEst').innerText = `KSh ${simulatedRemaining.toFixed(2)}`;
+    document.getElementById('lblRemainingEst').style.color = simulatedRemaining < 0 ? '#ef4444' : '#38bdf8';
+}
+
+function renderDisplay(user) {
+    document.getElementById('refCode').innerText = user.referralCode;
+    document.getElementById('wallet').innerText = 'KSh ' + parseFloat(user.wallet).toFixed(2);
+    document.getElementById('referralCountText').innerText = user.referrals;
+    
+    document.getElementById('countSurveys').innerText = user.surveyRegistryQuota ?? 70;
+    document.getElementById('countTodaySurveys').innerText = user.todaySurveyQuota ?? 7;
+
+    document.getElementById('lblSelectedCost').innerText = `KSh ${currentSelectedHubPrice}.00`;
+    let dynamicRem = parseFloat(user.wallet) - currentSelectedHubPrice;
+    document.getElementById('lblRemainingEst').innerText = `KSh ${dynamicRem.toFixed(2)}`;
+    document.getElementById('lblRemainingEst').style.color = dynamicRem < 0 ? '#ef4444' : '#38bdf8';
+
+    const actPanel = document.getElementById('activation');
+    const taskNotice = document.getElementById('taskLockoutNotice');
+    const taskGrid = document.getElementById('taskGridWrapper');
+
+    if(user.referralCode !== "----" && !user.is_active) {
+        actPanel.style.display = 'block';
+        setTimeout(() => { actPanel.style.opacity = '1'; actPanel.style.transform = 'translateY(0)'; }, 5);
+    } else if(user.is_active) {
+        actPanel.style.display = 'none';
+        taskNotice.style.display = 'none';
+        taskGrid.classList.remove('lockout-state');
+    }
+
+    let dynamicSharesYield = 0;
+    if (user.allocatedSlot && user.allocatedSlot > 0) {
+        let multiplier = getGrowthRatePerRef(user.allocatedSlot);
+        let accumulatedGrowth = user.referrals * multiplier;
+        let milestoneBonus = user.referrals >= 20 ? 500 : 0; 
+        
+        dynamicSharesYield = user.allocatedSlot + accumulatedGrowth + milestoneBonus;
+        
+        document.getElementById('guiSharesValue').innerText = 'KSh ' + dynamicSharesYield.toFixed(2);
+        document.getElementById('guiFormulaText').innerText = user.referrals >= 20 ? `Formula: ${user.allocatedSlot} + (${user.referrals} × KSh ${multiplier}) + [KSh 500 Bonus]` : `Formula: ${user.allocatedSlot} + (${user.referrals} × KSh ${multiplier})`;
+        document.getElementById('lblActiveSlot').innerText = `Slot KSh ${user.allocatedSlot}`;
+        document.getElementById('lblBaseCost').innerText = `KSh ${user.allocatedSlot}.00`;
+        document.getElementById('lblGrowthRate').innerText = `+KSh ${multiplier}.00 / Ref`;
+    } else {
+        document.getElementById('guiSharesValue').innerText = 'KSh 0.00';
+        document.getElementById('guiFormulaText').innerText = 'Formula: Base + Growth Matrix';
+        document.getElementById('lblActiveSlot').innerText = 'None Allocated';
+        document.getElementById('lblBaseCost').innerText = 'KSh 0.00';
+        document.getElementById('lblGrowthRate').innerText = 'Select a Tier';
+    }
+
+    // UPDATE ADMIN EARTHING MODULE (ONLY IF CRYPTO-DECRYPTED)
+    if (isEarthingTerminalUnlocked) {
+        document.getElementById('admUser').innerText = user.fullname ? `${user.fullname} (${user.phone})` : "No Registration Found";
+        document.getElementById('admWallet').innerText = `KSh ${parseFloat(user.wallet).toFixed(2)}`;
+        document.getElementById('admSharesEarning').innerText = `KSh ${dynamicSharesYield.toFixed(2)}`;
+        document.getElementById('admActivation').innerText = user.is_active ? "TRUE (Active)" : "FALSE (Locked)";
+    }
+}
+
+function registerUser(){
+    const name = document.getElementById('fullname').value.trim();
+    if(!name) { alert('Please enter your full name input details.'); return; }
+    if(!document.getElementById('terms').checked) { alert('You must review and agree to the platform Terms & Conditions to complete onboarding.'); return; }
+    
+    let u = fetchUser();
+    u.fullname = name;
+    u.phone = document.getElementById('phone').value.trim() || "00000000";
+    u.referralCode = 'BC' + Math.floor(10000 + Math.random() * 90000);
+    u.wallet = 0.00; 
+    u.referrals = 0;
+    u.allocatedSlot = 0;
+    u.surveyRegistryQuota = 70;
+    u.todaySurveyQuota = 7;
+    u.dailySurveyProcessed = false;
+    u.bountyTriggered = false;
+    u.is_active = false;
+    saveUser(u);
+    alert('Profile initialized! The Activation Gateway has unlocked directly below.');
+}
+
+function submitBankDeposit() {
+    const amt = parseFloat(document.getElementById('bankAmount').value);
+    const ref = document.getElementById('bankRefCode').value.trim();
+    if(!ref || isNaN(amt)) { alert('Enter payment reference detail'); return; }
+    if(amt !== CONFIG.fee) { alert(`Deposit must equal KSh ${CONFIG.fee}`); return; }
+
+    let u = fetchUser();
+    u.is_active = true;
+    u.wallet = parseFloat(u.wallet) + amt; 
+    saveUser(u);
+    alert(`Payment cleared! KSh ${amt} loaded to your asset core.`);
+}
+
+function executeSurveySubmission() {
+    let u = fetchUser();
+    if(u.todaySurveyQuota <= 0) {
+        alert("Daily limit met! All 7 questions for today have already been completed.");
+        return;
+    }
+    if(u.surveyRegistryQuota <= 0) { alert("Total survey pool registry completely exhausted."); return; }
+
+    u.surveyRegistryQuota -= 1;
+    u.todaySurveyQuota -= 1;
+    u.wallet = parseFloat(u.wallet) + 10.00; 
+    saveUser(u);
+    alert("Question Processed! +KSh 10.00 added directly to your tracking balance pool.");
+}
+
+function cycleTodaySurveyPool() {
+    let u = fetchUser();
+    if(u.todaySurveyQuota <= 0) { alert("Today's 7 question slots are already complete."); return; }
+    
+    const idx = 7 - u.todaySurveyQuota;
+    document.getElementById('lblTodaySurveyText').innerText = SURVEY_POOL_PROMPTS[idx % SURVEY_POOL_PROMPTS.length];
+    alert("Loaded question item successfully into core buffer frame below.");
+}
+
+function processSharePurchase() {
+    let u = fetchUser();
+    const selection = currentSelectedHubPrice; 
+    
+    if(!u.is_active) { alert('Access Denied! Activate account before buying slots.'); return; }
+    if (u.wallet < selection) {
+        alert(`Insufficient funds! Allocation needs KSh ${selection}. Current balance: KSh ${u.wallet.toFixed(2)}.`);
+        return;
+    }
+    
+    u.wallet = parseFloat(u.wallet) - selection; 
+    u.allocatedSlot = selection; 
+    saveUser(u);
+    alert(`Success! Allocated KSh ${selection} to your tracking layout.`);
+}
+
+function addMockReferral() {
+    let u = fetchUser();
+    u.referrals += 1;
+    
+    if(u.referrals === 20 && !u.bountyTriggered) {
+        u.wallet = parseFloat(u.wallet) + 500.00;
+        u.bountyTriggered = true;
+        alert("🎉 Earthing Alert: 20 user targets met! KSh 500.00 milestone bounty bonus credited.");
+    }
+    saveUser(u);
+}
+
+function resetSystemState() {
+    if(confirm("Are you sure you want to completely purge local database entries?")) {
+        localStorage.removeItem('broadUser');
+        window.location.reload();
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => renderDisplay(fetchUser()));
+</script>
+</body>
+</html>
