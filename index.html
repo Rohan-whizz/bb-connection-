@@ -448,6 +448,11 @@
 <body>
 
 <div class="container">
+    <div class="section" style="text-align: center; background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.25); margin-bottom: 25px;">
+        <span style="color: #38bdf8; font-weight: bold; letter-spacing: 0.5px;">📢 LIVE FEED:</span> 
+        <span id="activityText" style="color: #cbd5e1; font-size: 0.92rem; margin-left: 5px;">Brian from Nairobi just activated an account.</span>
+    </div>
+
     <div class="brand-header">
         <div class="logo-container">
             <svg class="brand-logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -734,6 +739,59 @@ const SURVEY_POOL_PROMPTS = [
     "Question 7: Analyze edge security paradigms for remote platform client authentication."
 ];
 
+/* LIVE ACTIVITIES FEED TEXTS */
+const activities = [
+    'Brian from Nairobi just activated an account.',
+    'Amina from Kisumu earned KSh 200 referral bonus.',
+    'Sarah from Nakuru completed activation.',
+    'Kevin from Mombasa joined AI networking.',
+    'John from Kampala shared with 5 people.',
+    'Lisa from Eldoret earned KSh 500.',
+    'Mercy from Embu activated successfully.',
+    'Daniel from Thika earned KSh 1,200.'
+];
+
+let activityIndex = 0;
+setInterval(() => {
+    activityIndex = (activityIndex + 1) % activities.length;
+    const tickerEl = document.getElementById('activityText');
+    if (tickerEl) tickerEl.innerText = activities[activityIndex];
+}, 5000);
+
+/* NOTIFICATION POPUP SYSTEM */
+const notificationsList = [
+    'New user joined successfully 🎉', 
+    'Withdrawal approved 💵',
+    'Referral bonus received 🚀', 
+    'Account activated successfully ✅',
+    'New networking opportunity available 🌍'
+];
+
+function showNotification(message){
+    const popup = document.createElement('div');
+    popup.innerText = message;
+    popup.style.position = 'fixed';
+    popup.style.bottom = '20px';
+    popup.style.right = '20px';
+    popup.style.background = '#16a34a';
+    popup.style.padding = '15px 20px';
+    popup.style.borderRadius = '12px';
+    popup.style.color = 'white';
+    popup.style.zIndex = '9999';
+    popup.style.boxShadow = '0 10px 30px rgba(0,0,0,.35)';
+    popup.style.fontFamily = 'sans-serif';
+    popup.style.fontSize = '0.9rem';
+    popup.style.fontWeight = '600';
+    popup.style.transition = 'all 0.3s ease';
+    document.body.appendChild(popup);
+    setTimeout(() => { popup.remove(); }, 4000);
+}
+
+setInterval(() => {
+    const randomMsg = notificationsList[Math.floor(Math.random() * notificationsList.length)];
+    showNotification(randomMsg);
+}, 25000);
+
 // Helper to determine growth rate value per referral based on slot principal amount
 function getGrowthRatePerRef(slotAmount) {
     if (slotAmount === 100) return 5;
@@ -828,12 +886,19 @@ function renderDisplay(user) {
         document.getElementById('lblActiveSlot').innerText = `Slot KSh ${user.allocatedSlot}`;
         document.getElementById('lblBaseCost').innerText = `KSh ${user.allocatedSlot}.00`;
         document.getElementById('lblGrowthRate').innerText = `+KSh ${multiplier}.00 / Ref`;
+        
+        // Dynamic Terminal Sync indicator light status switch
+        const statusNode = document.getElementById('terminalStatusNode');
+        if (statusNode) statusNode.innerHTML = '<div class="pulse-dot"></div><span>Market Track Active</span>';
     } else {
         document.getElementById('guiSharesValue').innerText = 'KSh 0.00';
         document.getElementById('guiFormulaText').innerText = 'Formula: Base + Growth Matrix';
         document.getElementById('lblActiveSlot').innerText = 'None Allocated';
         document.getElementById('lblBaseCost').innerText = 'KSh 0.00';
         document.getElementById('lblGrowthRate').innerText = 'Select a Tier';
+        
+        const statusNode = document.getElementById('terminalStatusNode');
+        if (statusNode) statusNode.innerHTML = '<div class="pulse-dot" style="background-color:#64748b; box-shadow:none;"></div><span style="color:#64748b;">Market Inactive</span>';
     }
 
     // UPDATE ADMIN EARTHING MODULE (ONLY IF CRYPTO-DECRYPTED)
@@ -863,6 +928,8 @@ function registerUser(){
     u.bountyTriggered = false;
     u.is_active = false;
     saveUser(u);
+    
+    showNotification('Registration successful ✅ Welcome onboard.');
     alert('Profile initialized! The Activation Gateway has unlocked directly below.');
 }
 
@@ -876,6 +943,8 @@ function submitBankDeposit() {
     u.is_active = true;
     u.wallet = parseFloat(u.wallet) + amt; 
     saveUser(u);
+    
+    showNotification(`Payment Verified! KSh ${amt} credited.`);
     alert(`Payment cleared! KSh ${amt} loaded to your asset core.`);
 }
 
@@ -891,7 +960,8 @@ function executeSurveySubmission() {
     u.todaySurveyQuota -= 1;
     u.wallet = parseFloat(u.wallet) + 10.00; 
     saveUser(u);
-    alert("Question Processed! +KSh 10.00 added directly to your tracking balance pool.");
+    
+    showNotification('Question Manifest Processed! +KSh 10.00');
 }
 
 function cycleTodaySurveyPool() {
@@ -900,7 +970,7 @@ function cycleTodaySurveyPool() {
     
     const idx = 7 - u.todaySurveyQuota;
     document.getElementById('lblTodaySurveyText').innerText = SURVEY_POOL_PROMPTS[idx % SURVEY_POOL_PROMPTS.length];
-    alert("Loaded question item successfully into core buffer frame below.");
+    showNotification('Loaded next question item safely into core buffer.');
 }
 
 function processSharePurchase() {
@@ -916,12 +986,15 @@ function processSharePurchase() {
     u.wallet = parseFloat(u.wallet) - selection; 
     u.allocatedSlot = selection; 
     saveUser(u);
-    alert(`Success! Allocated KSh ${selection} to your tracking layout.`);
+    
+    showNotification(`Shares allocated successfully! Slot KSh ${selection} Open.`);
 }
 
 function addMockReferral() {
     let u = fetchUser();
     u.referrals += 1;
+    
+    showNotification(`New downline connected! Total referrals: ${u.referrals}`);
     
     if(u.referrals === 20 && !u.bountyTriggered) {
         u.wallet = parseFloat(u.wallet) + 500.00;
