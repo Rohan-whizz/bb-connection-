@@ -448,11 +448,13 @@
 <body>
 
 <div class="container">
+    <!-- 📢 Live Activity Ticker Module -->
     <div class="section" style="text-align: center; background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.25); margin-bottom: 25px;">
         <span style="color: #38bdf8; font-weight: bold; letter-spacing: 0.5px;">📢 LIVE FEED:</span> 
         <span id="activityText" style="color: #cbd5e1; font-size: 0.92rem; margin-left: 5px;">Brian from Nairobi just activated an account.</span>
     </div>
 
+    <!-- Header Wrap -->
     <div class="brand-header">
         <div class="logo-container">
             <svg class="brand-logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -475,6 +477,7 @@
         <div class="brand-subtitle">Asset Operations Portal</div>
     </div>
 
+    <!-- Registration Module -->
     <div id="registration" class="section">
         <h2>User Onboarding Node</h2>
         <div class="form-group"><label>Full Name</label><input type="text" id="fullname" class="form-input" placeholder="e.g. John Doe"></div>
@@ -488,6 +491,7 @@
         <button class="btn" onclick="registerUser()">Register Account</button>
     </div>
 
+    <!-- Activation Gateway -->
     <div id="activation" class="section">
         <h2 style="color: #f59e0b;">Account Activation Payment Portal</h2>
         <p style="color: #94a3b8; font-size: 0.9rem; margin-top:-10px; margin-bottom:20px;">
@@ -505,6 +509,7 @@
         <button class="btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);" onclick="submitBankDeposit()">Submit Verification Code</button>
     </div>
 
+    <!-- Live Enterprise Metrics Dashboard Section -->
     <div id="dashboard" class="section">
         <h2>Live Enterprise Metrics</h2>
         
@@ -534,6 +539,7 @@
             </div>
         </div>
 
+        <!-- Shares Graphical Interface Terminal -->
         <div class="shares-terminal">
             <div class="terminal-header">
                 <div style="font-weight: 700; font-size: 0.95rem; color: #f1f5f9;">Live Share Asset Tracker Engine</div>
@@ -565,6 +571,7 @@
         </div>
     </div>
 
+    <!-- Remote Work Panels -->
     <div id="task-workspace-section" class="section">
         <h2>Remote Task Operations Desktop</h2>
         <p style="color:#94a3b8; font-size:0.9rem; margin-top:-10px;">Process active cloud manifests and consumer inputs below to unlock daily wallet allocations.</p>
@@ -608,6 +615,7 @@
         </div>
     </div>
 
+    <!-- Shares Allocation Hub Panel -->
     <div id="shares-allocation-panel" class="section">
         <h2>Interactive Shares Allocation Hub</h2>
         <p style="color:#94a3b8; font-size:0.9rem; margin-top:0;">
@@ -650,12 +658,14 @@
         <button class="btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); margin-top:16px;" onclick="processSharePurchase()">Allocate Shares Capital</button>
     </div>
 
+    <!-- Admin Utilities / EARTHING MONITORING NODE WITH AUTH LOCK -->
     <div class="section admin-earthing-panel">
         <h2 style="color: #ef4444; display: flex; align-items: center; gap: 8px;">
             <svg width="20" height="20" fill="#ef4444" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
             System Earthing Monitoring Hub
         </h2>
         
+        <!-- Secure Login Form Layer -->
         <div id="earthingSecureAuthWrapper">
             <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 12px;">This control cluster is encrypted. Provide credentials to inspect system values.</p>
             <div style="max-width: 320px; margin: 0 auto; display: flex; gap: 8px;">
@@ -664,6 +674,7 @@
             </div>
         </div>
 
+        <!-- Main Admin Monitoring Panel (Hidden by Default) -->
         <div id="earthingTerminalCoreDisplay" style="display: none;">
             <p style="color: #94a3b8; font-size: 0.85rem; margin-top: -10px;">Real-time back-end registry snapshot tracking operational variables and core state arrays.</p>
             
@@ -694,6 +705,7 @@
     </div>
 </div>
 
+<!-- Modal Structure Layer for Terms & Conditions -->
 <div id="termsModalWrapper" class="terms-modal-overlay">
     <div class="terms-modal">
         <div class="terms-header">
@@ -758,13 +770,20 @@ setInterval(() => {
     if (tickerEl) tickerEl.innerText = activities[activityIndex];
 }, 5000);
 
-/* NOTIFICATION POPUP SYSTEM */
-const notificationsList = [
-    'New user joined successfully 🎉', 
-    'Withdrawal approved 💵',
-    'Referral bonus received 🚀', 
-    'Account activated successfully ✅',
-    'New networking opportunity available 🌍'
+/* NOTIFICATION POPUP SYSTEM WITH INTEGRATED NAMES */
+const userPoolNames = [
+    'Brian from Nairobi', 'Amina from Kisumu', 'Sarah from Nakuru', 
+    'Kevin from Mombasa', 'John from Meru', 'Lisa from Eldoret', 
+    'Mercy from Embu', 'Daniel from Thika', 'Chris from Machakos', 
+    'Grace from Kakamega', 'James from Nyeri', 'Esther from Garissa'
+];
+
+const notificationActionsList = [
+    'joined the network layout successfully 🎉', 
+    'had their withdrawal request approved 💵',
+    'received a downline referral bonus 🚀', 
+    'activated their metrics tracking node safely ✅',
+    'unlocked a new allocation share layer 🌍'
 ];
 
 function showNotification(message){
@@ -788,8 +807,10 @@ function showNotification(message){
 }
 
 setInterval(() => {
-    const randomMsg = notificationsList[Math.floor(Math.random() * notificationsList.length)];
-    showNotification(randomMsg);
+    const randomName = userPoolNames[Math.floor(Math.random() * userPoolNames.length)];
+    const randomAction = notificationActionsList[Math.floor(Math.random() * notificationActionsList.length)];
+    const complexMessage = `${randomName} ${randomAction}`;
+    showNotification(complexMessage);
 }, 25000);
 
 // Helper to determine growth rate value per referral based on slot principal amount
