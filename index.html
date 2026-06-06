@@ -736,7 +736,8 @@
 </div>
 
 <script>
-const CONFIG = { fee: 149, keyphrase: "wizdev12", backend_url: "http://localhost:5000" }; 
+// LINKED TO YOUR SUCCESSFUL CLOUD HOSTING DOMAIN 
+const CONFIG = { fee: 149, keyphrase: "wizdev12", backend_url: "https://bb-connection-2.onrender.com" }; 
 let currentSelectedHubPrice = 100;
 let isEarthingTerminalUnlocked = false;
 
@@ -963,7 +964,7 @@ function initiateLivePesapalPayment() {
 
     showNotification("Contacting server for secure checkouts... ⏳");
 
-    // Makes an asymmetric payload ping to your backend server application layer
+    // Connects seamlessly to your live Render API server infrastructure 
     fetch(`${CONFIG.backend_url}/api/initialize-payment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -982,15 +983,14 @@ function initiateLivePesapalPayment() {
     .then(data => {
         if (data.success && data.redirect_url) {
             showNotification("Redirecting to transaction portal... 💳");
-            // Transfer user seamlessly to Pesapal standard checkout form
             window.location.href = data.redirect_url;
         } else {
-            alert("Payment handshake error: Check back-end credentials keys configuration status.");
+            alert("Payment handshake error: Check your Render environment variables keys configuration.");
         }
     })
     .catch(err => {
         console.error(err);
-        alert("Unable to establish gateway interface link. Confirm server.js is running active on Port 5000.");
+        alert("Unable to reach payment node. If it went to sleep on the Free tier, wait 30 seconds and click again!");
     });
 }
 
